@@ -1,22 +1,24 @@
 from setuptools import setup
 
 setup(
-    name="django-passwords",
+    name="django-strong-passwords",
     version=__import__("passwords").__version__,
-    author="Donald Stufft",
-    description=("A Django reusable app that provides validators and a form "
-                 "field that checks the strength of a password"),
+    author="Brandon Helwig",
+    description=(
+        "A Django reusable app that provides validators and a form "
+        "field that checks the strength of a password"
+    ),
     long_description=open("README.rst").read(),
-    url="http://github.com/dstufft/django-passwords/",
+    url="https://github.com/brhelwig/django-strong-passwords/",
     license="BSD",
     packages=[
         "passwords",
     ],
     include_package_data=True,
-    install_requires = [
+    install_requires=[
         "Django >= 1.3",
     ],
-    classifiers = [
+    classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
