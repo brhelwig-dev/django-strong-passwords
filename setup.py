@@ -1,8 +1,9 @@
 from setuptools import setup
+from passwords import __version__
 
 setup(
     name="django-strong-passwords",
-    version="0.1.0",
+    version=__version__,
     author="Brandon Helwig",
     description=(
         "A Django reusable app that provides validators and a form "
