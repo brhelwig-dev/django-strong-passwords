@@ -1,13 +1,14 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.13.1,<0.14"]
+build-backend = "uv_build"
 
 [project]
 name = "django-strong-passwords"
-dynamic = ["version"]
+version = "0.1.4"
 description = "A Django reusable app that provides validators and a form field that checks the strength of a password"
 readme = "README.rst"
-license = { text = "BSD" }
+license = "BSD-2-Clause"
+license-files = ["LICENSE"]
 authors = [
     { name = "Brandon Helwig", email = "django-strong-passwords@brandonhelwig.com" }
 ]
@@ -19,7 +20,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -33,17 +33,9 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/brhelwig/django-strong-passwords/"
 
-[tool.hatch.version]
-path = "passwords/__init__.py"
-
-[tool.hatch.build.targets.sdist]
-include = [
-    "passwords/",
-    "README.rst",
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["passwords"]
+[tool.uv.build-backend]
+module-name = "passwords"
+module-root = ""
 
 [dependency-groups]
 dev = [
