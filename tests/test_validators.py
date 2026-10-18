@@ -223,7 +223,7 @@ class DictionaryValidator(ValidatorTestCase):
     def mkvalidator(self, words=None, dictionary_words=None, threshold=None):
         instance = validators.DictionaryValidator(words=words, threshold=threshold)
         if dictionary_words:
-            instance.get_dictionary_words = lambda self, d: dictionary_words
+            instance.get_dictionary_words = lambda self, d: dictionary_words  # ty: ignore[invalid-assignment]
         return instance
 
     def test_provide_words_but_no_dictionary(self):

@@ -19,7 +19,7 @@ COMMON_SEQUENCES = [
     "qwertzuiopü*asdfghjklöä'>yxcvbnm;:_",
     "qaywsxedcrfvtgbzhnujmikolp",
 ]
-DICT_CACHE = []  # type: ignore[var-annotated]
+DICT_CACHE = []
 DICT_FILESIZE = -1
 DICT_MAX_CACHE = 1000000
 
