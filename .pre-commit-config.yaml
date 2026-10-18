@@ -1,29 +1,14 @@
 repos:
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.4.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.1
     hooks:
-      - id: flake8
-        args: [ "--ignore=E501"]
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.3.1
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.89
     hooks:
-      - id: mypy
-        additional_dependencies:
-          - "types-six"
-  - repo: https://github.com/psf/black
-    rev: 26.5.1
-    hooks:
-      - id: black
-  - repo: https://github.com/pycqa/isort
-    rev: 9.0.2
-    hooks:
-      - id: isort
-        args: [ "--profile", "black" ]
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.9.4
-    hooks:
-      - id: bandit
-        exclude: ^tests/
+      - id: ty
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:

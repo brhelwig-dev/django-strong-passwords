@@ -1,4 +1,6 @@
-from unittest import TestCase
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest import TestCase, mock
 
 from django.core.exceptions import ValidationError
 
@@ -221,12 +223,21 @@ class DictionaryValidator(ValidatorTestCase):
     def mkvalidator(self, words=None, dictionary_words=None, threshold=None):
         instance = validators.DictionaryValidator(words=words, threshold=threshold)
         if dictionary_words:
-            instance.get_dictionary_words = lambda self, d: dictionary_words
+            instance.get_dictionary_words = lambda self, d: dictionary_words  # ty: ignore[invalid-assignment]
         return instance
 
     def test_provide_words_but_no_dictionary(self):
         dv = self.mkvalidator(words=["common", "words"])
         self.assertValid(dv, self.different)
+
+    def test_dictionary_file(self):
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp, "words")
+            path.write_text("nostromo\n")
+            with mock.patch.multiple(validators, DICT_CACHE=[], DICT_FILESIZE=-1):
+                dv = validators.DictionaryValidator(dictionary=str(path))
+        with self.assertRaises(ValidationError):
+            dv("nostromo")
 
     def test_provide_dictionary_but_no_words(self):
         dv = self.mkvalidator(dictionary_words="common\nwords")

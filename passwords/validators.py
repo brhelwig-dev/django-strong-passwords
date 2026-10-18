@@ -19,7 +19,7 @@ COMMON_SEQUENCES = [
     "qwertzuiopü*asdfghjklöä'>yxcvbnm;:_",
     "qaywsxedcrfvtgbzhnujmikolp",
 ]
-DICT_CACHE = []  # type: ignore[var-annotated]
+DICT_CACHE = []
 DICT_FILESIZE = -1
 DICT_MAX_CACHE = 1000000
 
@@ -165,9 +165,10 @@ class DictionaryValidator(BaseSimilarityValidator):
         )
 
     def get_dictionary_words(self, dictionary):
+        global DICT_CACHE, DICT_FILESIZE
         if DICT_CACHE:
-            return DICT_CACHE  # noqa: F823
-        if DICT_FILESIZE == -1:  # noqa: F823
+            return DICT_CACHE
+        if DICT_FILESIZE == -1:
             f = open(dictionary)
             f.seek(0, 2)
             DICT_FILESIZE = f.tell()

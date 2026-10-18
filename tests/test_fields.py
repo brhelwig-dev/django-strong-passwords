@@ -16,6 +16,7 @@ class TestFields(TestCase):
 
     def test_widget_attributes(self):
         p = fields.PasswordField()
+        assert isinstance(p.widget, PasswordInput)
         # Verify that our default minimum length creates some sort of HTML5
         # validation.
         self.assertTrue("minlength" in p.widget.attrs or "pattern" in p.widget.attrs)
